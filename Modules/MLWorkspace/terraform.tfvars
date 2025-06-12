@@ -1,6 +1,6 @@
 resource_group_name = "my-ml-rg"
 location = "eastus"
-workspace_name = "my-ml-workspace1"
+workspace_name = "my-ml-workspace2"
 storage_account_id = "mystorageaccount123"
 key_vault_id = "my-key-vault-id"
 tags = {
