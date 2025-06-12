@@ -2,6 +2,17 @@ provider "azurerm" {
   features {}     
   subscription_id = var.subscription_id
 }
+provider "random" {
+  # Random provider to generate unique names for resources  
+}
+
+resource "random_string" "name" {
+  length = 5
+  special = false
+  upper = false
+  lower = true
+  numeric = true
+}
 
 resource "azurerm_resource_group" "mlrg"{
   # Create a resource group for the Azure Machine Learning workspace
@@ -13,7 +24,7 @@ resource "azurerm_resource_group" "mlrg"{
 
 //create a storage account for the Azure Machine Learning workspace
 resource "azurerm_storage_account" "ml_storage" {
-  name                     = "kcmlstorage1"
+  name                     = "kcmlstorage${random_string.name.result}"
   resource_group_name      = azurerm_resource_group.mlrg.name
   location                 = var.location
   account_tier             = "Standard"
